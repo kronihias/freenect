@@ -61,15 +61,15 @@ static void freenect_bang(t_freenect*x) {
 	int ret=freenect_supported_subdevices();
   
 	
-	if (ret & (1 << 1))
+	if (ret & (1 << 0))
 	{
 		post ("libfreenect supports FREENECT_DEVICE_MOTOR (%i)", ret);
 	}
-	if (ret & (1 << 2))
+	if (ret & (1 << 1))
 	{
 		post ("libfreenect supports FREENECT_DEVICE_CAMERA (%i)", ret);
 	}
-	if (ret & (1 << 4))
+	if (ret & (1 << 2))
 	{
 		post ("libfreenect supports FREENECT_DEVICE_AUDIO (%i)", ret);
 	}
@@ -202,6 +202,7 @@ static void *freenect_new(t_symbol *s,int argc, t_atom *argv){
 		verbose(1, "trying to open Kinect device nr %i...", (int)kinect_dev_nr);
 		if (freenect_open_device(f_ctx, &f_dev, kinect_dev_nr) < 0) {
 			post("ERROR: Could not open Kinect Nr %i !", kinect_dev_nr);
+			return(NULL);
 		} else
 			post("Kinect Nr %d opened", kinect_dev_nr);
 	}
@@ -212,6 +213,7 @@ static void *freenect_new(t_symbol *s,int argc, t_atom *argv){
 		post("trying to open Kinect with serial %s...", (char*)serial->s_name);
 		if (freenect_open_device_by_camera_serial(f_ctx, &f_dev, (char*)serial->s_name) < 0) {
 			post("ERROR: Could not open Kinect with serial %s !", (char*)serial->s_name);
+			return(NULL);
 		} else
 			post("Kinect with serial %s opened!", (char*)serial->s_name);
 	}

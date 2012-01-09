@@ -4,7 +4,7 @@
 # path to pd
 ## change this according to your setup!
 PDROOT=/Users/matthias/Pd-0.42.5-extended/pd
-LIBFREENECT=/Users/matthias/libfreenect/include
+LIBFREENECT=/home/matthias/libfreenect/include
 
 # here we find the sources of pd (and evtl. the pd.lib)
 PDSRCDIR=$(PDROOT)/src
