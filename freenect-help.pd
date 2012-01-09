@@ -1,0 +1,52 @@
+#N canvas 518 195 749 403 10;
+#X text 410 332 www.matthiaskronlachner.com;
+#X text 406 314 (C)2011/2012 Matthias Kronlachner;
+#X msg 356 59 bang;
+#X msg -31 96 angle \$1;
+#X obj -31 74 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X msg 78 145 led \$1;
+#X obj 78 50 vradio 15 1 0 6 empty empty empty 0 -8 0 10 -262144 -1
+-1 0;
+#X msg 159 146 accel;
+#X obj 88 253 route tilt_angle accel;
+#X floatatom 88 284 5 0 0 0 - - -;
+#X obj 152 282 unpack 0 0 0;
+#X floatatom 152 319 5 0 0 0 - - -;
+#X floatatom 186 319 5 0 0 0 - - -;
+#X floatatom 221 319 5 0 0 0 - - -;
+#X obj 159 125 metro 200;
+#X obj 159 105 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 457 190 # freenect A00362807917045A;
+#X obj 88 201 freenect 0;
+#X text 169 195 1st argument: Device ID or Serial Number eg. A00362807917045A
+;
+#X text 357 80 show serial numbers;
+#X text -86 49 angle from -30 to 30 deg;
+#X text 163 163 accelerometer data to outlet;
+#X text 357 93 of connected devices;
+#X text 357 107 in output window;
+#X text 94 64 GREEN;
+#X text 95 48 OFF;
+#X text 94 80 RED;
+#X text 94 95 YELLOW;
+#X text 94 110 BLINK_GR;
+#X text 94 124 BLINK_R_Y;
+#X text 357 123 and libfreenect available subdevices;
+#X text -72 1 freenect 0.2 gives you access to led \, motor and accelerometer
+of Microsoft Xbox Kinect via libfreenect;
+#X connect 2 0 17 0;
+#X connect 3 0 17 0;
+#X connect 4 0 3 0;
+#X connect 5 0 17 0;
+#X connect 6 0 5 0;
+#X connect 7 0 17 0;
+#X connect 8 0 9 0;
+#X connect 8 1 10 0;
+#X connect 10 0 11 0;
+#X connect 10 1 12 0;
+#X connect 10 2 13 0;
+#X connect 14 0 7 0;
+#X connect 15 0 14 0;
+#X connect 17 0 8 0;
