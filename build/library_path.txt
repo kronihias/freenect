@@ -1,0 +1,6 @@
+if you compile the external on osx make sure the link path is correct...
+(just for documentation)
+
+otool -L freenect.pd_darwin
+
+install_name_tool -change libfreenect.0.0.dylib @loader_path/libfreenect.0.0.1.dylib freenect.pd_darwin
