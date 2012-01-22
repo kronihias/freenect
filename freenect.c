@@ -16,6 +16,7 @@
 #include "m_pd.h"
 #include <string.h>
 #include <pthread.h>
+#include <stdlib.h>
 
 #include "libfreenect.h"
 
@@ -44,7 +45,8 @@ static t_class *freenect_class;
 
 static void freenect_bang(t_freenect*x) {
 	post ("\n::freenect status::");
-  struct freenect_device_attributes * devAttrib;
+  
+	struct freenect_device_attributes *devAttrib = malloc(sizeof *devAttrib);
 	int nr_devices = freenect_list_device_attributes(f_ctx, &devAttrib);
   post ("Number of devices found: %d", nr_devices);
 	
@@ -161,7 +163,9 @@ static void *freenect_new(t_symbol *s,int argc, t_atom *argv){
 	freenect_set_log_level(f_ctx, FREENECT_LOG_ERROR); // LOW LOGLEVEL
 	//freenect_set_log_level(f_ctx, FREENECT_LOG_SPEW); // log almost everything
 
-  struct freenect_device_attributes * devAttrib;
+  //struct freenect_device_attributes * devAttrib;
+	struct freenect_device_attributes *devAttrib = malloc(sizeof *devAttrib);
+	
 	int nr_devices = freenect_list_device_attributes(f_ctx, &devAttrib);
   post ("Number of devices found: %d", nr_devices);
 	
